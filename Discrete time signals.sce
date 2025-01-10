@@ -86,4 +86,41 @@ subplot(2, 2, 4)
 plot(time_linear_interp, linear_interp_signal, 'r-', 'LineWidth', 2)
 
 
-% 
+// Discrete Exponential Signal
+n = 0:20
+a = -1 
+x_exp = exp(a * n)
+subplot(3,1,1)
+plot2d3(n, x_exp)
+title('Discrete Exponential Signal')
+xlabel('n')
+ylabel('{exp}(n)')
+
+f = 0.1  
+x_sin = sin(2 * %pi * f * n)
+
+subplot(3,1,2)
+plot2d3(n, x_sin)
+title('Discrete Sine Wave')
+xlabel('n')
+ylabel('x_{sin}(n)')
+
+// Discrete Random Signal
+x_rand = 2 * rand(1, length(n)) - 1
+
+// Plot Random Signal
+subplot(3,1,3)
+plot2d3(n, x_rand)
+title('Discrete Random Signal')
+xlabel('n')
+ylabel('x_{rand}(n)')
+
+
+// Decimation factor
+D = 2 
+x_sin_decimated = x_sin(1:D:$)
+scf()
+plot2d3(0:length(x_sin_decimated)-1, x_sin_decimated)
+title('Decimated Sine Wave by Factor D=2')
+xlabel('n')
+ylabel('x_{sin-dec}(n)')

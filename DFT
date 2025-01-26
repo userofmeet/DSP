@@ -1,0 +1,111 @@
+// DFT OF A SEQUENCE
+x=[1 2 3 4];
+y=fft(x);
+plot(abs(y));
+plot2d3(abs(y));
+title('dft');
+xlabel('time');
+ylabel('amplitude');
+
+
+//DFT
+clc;
+sig=[1 1 0 0];
+x=[sig, zeros(1, 100)]
+y=fft(x);
+plot(abs(y));
+plot2d3(abs(y));
+title('dft');
+xlabel('time');
+ylabel('amplitude');
+
+
+clc;
+sig=[1 1 0 0];
+x=[sig, zeros(1, 10)]
+y=fft(x);
+plot(abs(y));
+plot2d3(abs(y));
+title('dft');
+xlabel('time');
+ylabel('amplitude');
+
+
+clc;
+sig=[1 1 1 1 1 1 0 0];
+x=[sig, zeros(1, 100)]
+y=fft(x);
+plot(abs(y));
+plot2d3(abs(y));
+title('dft');
+xlabel('time');
+ylabel('amplitude');
+
+
+
+clc
+clear
+fs=8000
+fp=1000
+dc=50
+n=1000
+ts=1/fs
+t=0:ts:(n-1)*ts
+pulse=squarewave(2*%pi*fp*t, dc)
+x=fft(pulse)
+f=(0:n-1)*fs/n
+subplot(211)
+plot(f, abs(x))
+subplot(212)
+plot(pulse)
+
+
+
+//Spectrum of the exponential function
+clc;
+close;
+clear;
+fs=1; //sampling rate
+n=0:1/fs:10 //10s duration (Increasing the value and observe spectrum)
+x=exp(-n);
+plot2d3(x)
+x1=[x, zeros(1,100)]; //zero padding for better spectrum resolution
+y=fft(x1);
+plot2d3(abs(fftshift(y)))
+
+
+
+clc;
+a=[1 2 3 4];
+x=[zeros(1,2),a]
+subplot(211)
+plot2d3(x)
+y=fft(x);
+subplot(212)
+plot2d3(abs(y));
+plot(abs(y))
+title('dft');
+xlabel('time');
+ylabel('amplitude');
+
+
+
+// WITHOUT INBUILT
+x=[1 1 0 0]
+N=length(x)
+n=0:N-1
+k=n 
+X=[]
+for i=0:length(k)-1 
+  y=0
+  for j=0:length(n)-1
+    y= y + x(j+1)*exp(-(%i*2*%pi*i*j)/N) 
+  end
+  X = [X y]
+end
+plot(X)
+plot2d3(X)
+mprintf("DFT on given signal is:") 
+for i=1:length(X)
+  disp(X(i)) 
+end
